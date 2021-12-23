@@ -1,0 +1,11 @@
+sudo: required
+services:
+  - docker
+
+# this says what needs to run before e.g. running tests (next step)  
+before_install:
+  - docker build -t jakubhave/docker-react -f Dockerfile.dev .  
+  
+# all commands to execute to run the tests  
+script:
+  - docker run -e CI=true jakubhave/docker-react npm run test  
